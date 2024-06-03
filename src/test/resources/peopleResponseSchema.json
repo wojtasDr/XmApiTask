@@ -3,13 +3,22 @@
   "type": "object",
   "properties": {
     "count": {
-      "type": "integer"
+      "type": "number",
+      "minimum": 0
     },
     "next": {
-      "type": ["string", "null"]
+      "type": [
+        "string",
+        "null"
+      ],
+      "pattern": "^https?://swapi\\.dev/api/people/\\?page=\\d+"
     },
     "previous": {
-      "type": ["null"]
+      "type": [
+        "string",
+        "null"
+      ],
+      "pattern": "^https?://swapi\\.dev/api/people/\\?page=\\d+$"
     },
     "results": {
       "type": "array",
@@ -20,10 +29,12 @@
             "type": "string"
           },
           "height": {
-            "type": "string"
+            "type": "string",
+            "pattern": "\\d+|unknown"
           },
           "mass": {
-            "type": "string"
+            "type": "string",
+            "pattern": "\\d+|unknown"
           },
           "hair_color": {
             "type": "string"
@@ -41,40 +52,48 @@
             "type": "string"
           },
           "homeworld": {
-            "type": "string"
+            "type": "string",
+            "pattern": "^https?://swapi\\.dev/api/planets/\\d+/$"
           },
           "films": {
             "type": "array",
             "items": {
-              "type": "string"
+              "type": "string",
+              "pattern": "^https?://swapi\\.dev/api/films/\\d+/$"
             }
           },
           "species": {
             "type": "array",
             "items": {
-              "type": "string"
+              "type": "string",
+              "pattern": "^https?://swapi\\.dev/api/species/\\d+/$"
             }
           },
           "vehicles": {
             "type": "array",
             "items": {
-              "type": "string"
+              "type": "string",
+              "pattern": "^https?://swapi\\.dev/api/vehicles/\\d+/$"
             }
           },
           "starships": {
             "type": "array",
             "items": {
-              "type": "string"
+              "type": "string",
+              "pattern": "^https?://swapi\\.dev/api/starships/\\d+/$"
             }
           },
           "created": {
-            "type": "string"
+            "type": "string",
+            "format": "date-time"
           },
           "edited": {
-            "type": "string"
+            "type": "string",
+            "format": "date-time"
           },
           "url": {
-            "type": "string"
+            "type": "string",
+            "pattern": "^https?://swapi\\.dev/api/people/\\d+/$"
           }
         },
         "required": [
@@ -98,5 +117,10 @@
       }
     }
   },
-  "required": ["count", "next", "previous", "results"]
+  "required": [
+    "count",
+    "next",
+    "previous",
+    "results"
+  ]
 }

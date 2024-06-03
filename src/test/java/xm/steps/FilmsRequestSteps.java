@@ -106,7 +106,6 @@ public class FilmsRequestSteps implements En {
 
         Then("^People response json schema is correct$", () -> {
             apiResponseStorage.getCurrentResponse().body(JsonSchemaValidator.matchesJsonSchemaInClasspath("peopleResponseSchema.json"));
-
         });
     }
 }

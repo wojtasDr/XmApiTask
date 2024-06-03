@@ -20,7 +20,6 @@ public class GetRequestFactory {
                         .when()
                         .get(endPoint)
                         .then()
-//                        .log().all()
                         .assertThat());
 
         return apiResponseStorage.getCurrentResponse();
