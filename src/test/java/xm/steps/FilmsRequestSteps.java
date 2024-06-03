@@ -1,6 +1,7 @@
 package xm.steps;
 
 import io.cucumber.java8.En;
+import io.restassured.module.jsv.JsonSchemaValidator;
 import io.restassured.response.ValidatableResponse;
 import org.apache.http.HttpStatus;
 import org.assertj.core.api.Assertions;
@@ -97,6 +98,15 @@ public class FilmsRequestSteps implements En {
 
             //check if found character is equal to expected tallest character of all films
             Assertions.assertThat(expectedTallestCharacterName).isEqualTo(actualTallestCharacterName);
+        });
+
+        When("^I send GET /people request$", () -> {
+            getRequestFactory.sendGetRequest(RequestsEndpoints.PEOPLE.getEndPoint());
+        });
+
+        Then("^People response json schema is correct$", () -> {
+            apiResponseStorage.getCurrentResponse().body(JsonSchemaValidator.matchesJsonSchemaInClasspath("peopleResponseSchema.json"));
+
         });
     }
 }
